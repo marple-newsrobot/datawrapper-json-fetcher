@@ -10,7 +10,8 @@ var gulp = require('gulp'),
      autoprefixer = require('gulp-autoprefixer'),
      browserSync = require('browser-sync').create(),
      htmlreplace = require('gulp-html-replace'),
-     cssmin = require('gulp-cssmin');
+     cssmin = require('gulp-cssmin'),
+     ghPages = require('gulp-gh-pages');
 
 gulp.task("concatScripts", function() {
     return gulp.src([
@@ -43,7 +44,7 @@ gulp.task('compileSass', function() {
 });
 
 gulp.task("minifyCss", ["compileSass"], function() {
-  return gulp.src("app/assets/css/main.css")
+  return gulp.src(["app/assets/css/main.css"])
     .pipe(cssmin())
     .pipe(rename('main.min.css'))
     .pipe(gulp.dest('dist/assets/css'));
@@ -67,18 +68,19 @@ gulp.task('clean', function() {
 });
 
 gulp.task('renameSources', function() {
-  return gulp.src('*.html')
+  return gulp.src('app/*.html')
     .pipe(htmlreplace({
-        'js': 'app/assets/js/main.min.js',
-        'css': 'app/assets/css/main.min.css'
+        'js': 'assets/js/main.min.js',
+        'css': 'assets/css/main.min.css'
     }))
     .pipe(gulp.dest('dist/'));
 });
 
 gulp.task("build", ['minifyScripts', 'minifyCss'], function() {
-  return gulp.src(['*.html','*.css','favicon.ico',
+  return gulp.src(['app/*.html',
+                   'favicon.ico',
                    "app/assets/img/**",
-                   "app/assets/css/app.css",
+                   'app/assets/css/*.css',
                    "app/assets/js/app.js",
                    "app/assets/fonts/**"], { base: './app'})
             .pipe(gulp.dest('dist'));
@@ -91,6 +93,11 @@ gulp.task('serve', ['watchFiles'], function(){
 
     gulp.watch("app/assets/css/**/*.scss", ['watchFiles']);
     gulp.watch("app/*.html").on('change', browserSync.reload);
+});
+
+gulp.task('deploy', function() {
+  return gulp.src('./dist/**/*')
+    .pipe(ghPages());
 });
 
 gulp.task("default", ["clean", 'build'], function() {

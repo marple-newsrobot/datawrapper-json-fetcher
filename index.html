@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="description" content="This tool lets you fetch the underlying JSON data from Datawrapper charts.">
+    <meta name="keywords" content="tools,data visualization,json">
+    <meta name="author" content="Jens Finnäs">
+    <title>Fetch JSON data from Datawrapper</title>
+    <link rel="shortcut icon" href="favicon.ico">
+
+    <!-- build:css -->
+    <link rel="stylesheet" href="assets/css/main.css">
+    <!-- endbuild -->
+
+    <link rel="stylesheet" href="assets/css/jquery.json-viewer.css">
+
+  </head>
+
+  <body>
+
+
+    <div class="container">
+      <div class="jumbotron">
+        <h1 class="display-4">Fetch JSON data from Datawrapper</h1>
+        <p class="lead">
+          This tool lets you fetch the underlying JSON data from <a href="https://www.datawrapper.de">Datawrapper</a> charts.
+          This is something you might find handy if you create charts using the
+          <a href="https://developer.datawrapper.de/docs/getting-started">public API of Datawrapper</a> and need to understand exactly what properties are available for each chart type.
+        </p>
+
+        <hr>
+
+        <form>
+          <div class="form-group">
+            <label for="api-token">
+              1. Your Datawrapper API Token
+            </label>
+            <input type="text" class="form-control" id="api-token" aria-describedby="api-token-help" placeholder="" value="">
+            <small id="api-token-help" class="form-text text-muted">
+              Get it here: <a href="https://app.datawrapper.de/account/api-tokens">https://app.datawrapper.de/account/api-tokens</a>
+            </small>
+          </div>
+
+          <div class="form-group">
+            <label for="api-token">
+              2. The chart id
+            </label>
+            <input type="text" maxlength="6" size="6" class="form-control form-control-lg" id="chart-id" aria-describedby="chart-id-help" placeholder="" value="">
+            <small class="form-text text-muted">
+              The six character long identifier.
+            </small>
+          </div>
+        </form>
+      </div>
+
+      <div id="error" class="alert alert-danger" role="alert" style="display:none;">
+      </div>
+
+      <div id="result-wrapper" style="display:none;">
+        <button type="button" class="copy-to-clipboard btn btn-outline-secondary btn-sm float-right">Copy to clipboard</button>
+        <pre id="result" class="text-left"></pre>
+      </div>
+
+    </div>
+
+
+    <!-- Footer -->
+    <footer class="page-footer font-small blue">
+
+      <!-- Copyright -->
+      <div class="footer-copyright text-center small text-muted">
+        <div class="container">
+          <p>
+            Developed by <a href="https://github.com/jensfinnas">Jens Finnäs</a> from <a href="https://www.newsworthy.se/sv">Newsworthy</a>.<br/>
+            This application has been developet independently with no formal relationship with Datawrapper. It is set up to work with version 3 of the Datawrapper API.
+          </p>
+        </div>
+      </div>
+      <!-- Copyright -->
+
+    </footer>
+    <!-- Footer -->
+
+    <!-- build:js -->
+    <script src="assets/js/main.js"></script>
+     <!-- endbuild -->
+
+    <script src="assets/js/app.js"></script>
+
+  </body>
+
+</html>

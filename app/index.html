@@ -26,15 +26,18 @@
 
     <div class="container">
       <div class="jumbotron">
+        <!-- Intro -->
         <h1 class="display-4">Fetch JSON data from Datawrapper</h1>
         <p class="lead">
           This tool lets you fetch the underlying JSON data from <a href="https://www.datawrapper.de">Datawrapper</a> charts.
           This is something you might find handy if you create charts using the
           <a href="https://developer.datawrapper.de/docs/getting-started">public API of Datawrapper</a> and need to understand exactly what properties are available for each chart type.
         </p>
+        <!-- End of intro -->
 
         <hr>
 
+        <!-- Form -->
         <form>
           <div class="form-group">
             <label for="api-token">
@@ -56,8 +59,12 @@
             </small>
           </div>
         </form>
+        <!-- End of form -->
+
       </div>
 
+
+      <!-- Display results -->
       <div id="error" class="alert alert-danger" role="alert" style="display:none;">
       </div>
 
@@ -65,12 +72,13 @@
         <button type="button" class="copy-to-clipboard btn btn-outline-secondary btn-sm float-right">Copy to clipboard</button>
         <pre id="result" class="text-left"></pre>
       </div>
+      <!-- End of display results -->
 
     </div>
 
 
     <!-- Footer -->
-    <footer class="page-footer font-small blue">
+    <footer class="page-footer font-small blue mt-3">
 
       <!-- Copyright -->
       <div class="footer-copyright text-center small text-muted">

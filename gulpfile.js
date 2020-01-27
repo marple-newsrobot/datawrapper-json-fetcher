@@ -15,7 +15,7 @@ var gulp = require('gulp'),
 gulp.task("concatScripts", function() {
     return gulp.src([
         'assets/js/vendor/jquery-3.3.1.min.js',
-        'assets/js/vendor/popper.min.js',
+        'assets/js/vendor/jquery.json-viewer.js',
         'assets/js/vendor/bootstrap.min.js'
         ])
     .pipe(maps.init())
@@ -29,7 +29,7 @@ gulp.task("minifyScripts", ["concatScripts"], function() {
   return gulp.src("assets/js/main.js")
     .pipe(uglify())
     .pipe(rename('main.min.js'))
-    .pipe(gulp.dest('docs/assets/js'));
+    .pipe(gulp.dest('dist/assets/js'));
 });
 
 gulp.task('compileSass', function() {
@@ -46,7 +46,7 @@ gulp.task("minifyCss", ["compileSass"], function() {
   return gulp.src("assets/css/main.css")
     .pipe(cssmin())
     .pipe(rename('main.min.css'))
-    .pipe(gulp.dest('docs/assets/css'));
+    .pipe(gulp.dest('dist/assets/css'));
 });
 
 gulp.task('watchFiles', function() {
@@ -63,7 +63,7 @@ gulp.task('browser-sync', function() {
 });
 
 gulp.task('clean', function() {
-  del(['docs', 'assets/css/main.css*', 'assets/js/main*.js*']);
+  del(['dist', 'assets/css/main.css*', 'assets/js/main*.js*']);
 });
 
 gulp.task('renameSources', function() {
@@ -72,13 +72,13 @@ gulp.task('renameSources', function() {
         'js': 'assets/js/main.min.js',
         'css': 'assets/css/main.min.css'
     }))
-    .pipe(gulp.dest('docs/'));
+    .pipe(gulp.dest('dist/'));
 });
 
 gulp.task("build", ['minifyScripts', 'minifyCss'], function() {
   return gulp.src(['*.html', '*.php','*.css','favicon.ico',
-                   "assets/img/**","assets/css/theme.css","assets/js/theme.js","assets/fonts/**"], { base: './'})
-            .pipe(gulp.dest('docs'));
+                   "assets/img/**","assets/css/app.css","assets/js/app.js","assets/fonts/**"], { base: './'})
+            .pipe(gulp.dest('dist'));
 });
 
 gulp.task('serve', ['watchFiles'], function(){
